@@ -1,0 +1,27 @@
+/*.modal {*/
+/*    padding-top: 40px;*/
+/*}*/
+
+.fade.modal-backdrop.in{
+ opacity: 0.8;
+}
+
+.modal-backdrop {
+ opacity: 0.8;
+}
+
+.modal.fade.in {
+    opacity: 1;
+}
+
+#__react-alert__ span {
+    text-transform: initial !important;
+}
+
+#__react-alert__ div div div {
+    background-color: #3269cb !important;
+}
+
+#__react-alert__ div {
+    z-index: 1100 !important;
+}
