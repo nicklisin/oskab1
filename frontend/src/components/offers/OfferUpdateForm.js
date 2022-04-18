@@ -144,7 +144,7 @@ class OfferUpdateForm extends Component {
                             />
                         </div>
                         <div className="form-group col-md-2 mb-2">
-                            <label>Цена, кг</label>
+                            <label>Цена, ₽/кг</label>
                             <input className="form-control"
                             type="number"
                             name="price"

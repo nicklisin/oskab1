@@ -107,7 +107,7 @@ class Form extends Component {
                             />
                         </div>
                         <div className="form-group col-md-2 mb-2">
-                            <label>Засор</label>
+                            <label>Засор, %</label>
                             <input className="form-control"
                             type="text"
                             name="impurity"
@@ -116,7 +116,7 @@ class Form extends Component {
                             />
                         </div>
                         <div className="form-group col-md-2 mb-2">
-                            <label>Цена</label>
+                            <label>Цена, ₽/кг</label>
                             <input className="form-control"
                             type="text"
                             name="price"

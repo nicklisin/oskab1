@@ -81,8 +81,8 @@ export class Offers extends Component {
                         <th>Категория</th>
                         <th>Вес, кг</th>
                         <th>Засор, %</th>
-                        <th>Цена, руб.</th>
-                        <th>Стоимость, руб.</th>
+                        <th>Цена, ₽/кг</th>
+                        <th>Стоимость, ₽</th>
                         <th>Адрес</th>
                         <th>Способ поставки</th>
                     </tr>
