@@ -23,13 +23,17 @@ class OfferAdmin(admin.ModelAdmin):
         if has_group(request.user, "moderators"):
             return qs.filter(status__in=['onreview', 'prerejected', 'accepted', 'rejected'])
 
-    list_display = ('weight', 'supplier', 'price', 'created', 'status')
+    def owner_email(self, obj):
+        return obj.owner.email
+    owner_email.short_description = 'Email'
+
+    list_display = ('weight', 'supplier', 'price', 'created', 'status', 'owner_email')
     search_fields = ['status']
     list_filter = ('status', 'category')
     ordering = ['created']
     readonly_fields = ['supplier', 'category', 'weight', 'impurity', 'price', 'delivery_method',
     'removal_address', 'delivery_range_from', 'delivery_range_max',
-    'delivery_range_price', 'created', 'updated', 'owner']
+    'delivery_range_price', 'created', 'updated', 'owner', 'owner_email']
 
     def get_readonly_fields(self, request, obj=None):
         if request.user.is_superuser:
