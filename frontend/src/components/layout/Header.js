@@ -31,7 +31,7 @@ class Header extends Component {
                                { user ? `👤 ${user.username} (${user.email})` : '' }
                            </span>
                             <li className="nav-item">
-                               <button onClick={this.props.logout} className="nav-link btn btn-sm btn-info text-light">
+                               <button onClick={this.props.logout} className="nav-link btn btn-sm btn-info text-light ps-2 pe-2">
                                    <svg className="me-1" id="i-signin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3">
                                     <path d="M3 16 L23 16 M15 8 L23 16 15 24 M21 4 L29 4 29 28 21 28" />
                                     </svg> Выход</button>

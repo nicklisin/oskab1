@@ -18,6 +18,7 @@ export class Suppliers extends Component {
         return (
             <div>
                 <h1>Компании</h1>
+                <div className="table-responsive">
                 <table className="table table-striped">
                     <thead>
                     <tr>
@@ -39,6 +40,7 @@ export class Suppliers extends Component {
                     ))}
                     </tbody>
                 </table>
+                </div>
             </div>
         );
     }

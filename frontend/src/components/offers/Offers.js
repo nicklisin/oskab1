@@ -71,7 +71,7 @@ export class Offers extends Component {
                 {this.state.showAddForm ? <Form handleShowAddForm={this.handleShowAddForm} errors={this.state.errors} /> : null}
                 {this.state.showUpdateForm ? <OfferUpdateForm handleShowUpdateForm={this.handleShowUpdateForm} errors={this.state.errors} offer={this.state.offer} /> : null}
 
-
+                <div className="table-responsive">
                 <table className="table table-striped">
                     <thead>
                     <tr>
@@ -120,6 +120,7 @@ export class Offers extends Component {
                     ))}
                     </tbody>
                 </table>
+                </div>
 
             </div>
         );
