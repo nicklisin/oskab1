@@ -65,6 +65,7 @@ class Offer(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name='Создано')
     updated = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
     owner = models.ForeignKey(User, related_name='offers', on_delete=models.CASCADE, null=True, verbose_name='Пользователь')
+    comment = models.TextField(max_length=1000, null=True, blank=True, verbose_name='Комментарий')
 
     def __str__(self):
         return '%s %s %s кг' % (self.supplier, self.category, self.weight)
