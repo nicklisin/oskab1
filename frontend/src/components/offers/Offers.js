@@ -49,7 +49,7 @@ export class Offers extends Component {
         }
 
     getStatusColor(status) {
-    if (status === 'accepted') {
+    if (status === 'accepted' || status === 'done') {
         return 'text-success';
     }
     if (status === 'rejected' || status === 'todelete') {

@@ -45,7 +45,8 @@ class Offer(models.Model):
         ('prerejected', 'Предварительно отклонено'),
         ('accepted', 'Принято'),
         ('rejected', 'Отклонено'),
-        ('todelete', 'На удаление')
+        ('todelete', 'На удаление'),
+        ('done', 'Реализовано')
     ]
     DELIVERY_CHOICES = [
         ('removal', 'Вывоз'),
