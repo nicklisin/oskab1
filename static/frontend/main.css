@@ -1,6 +1,6 @@
-/*.modal {*/
-/*    padding-top: 40px;*/
-/*}*/
+.login-card, .reg-card {
+    max-width: 340px;
+}
 
 .fade.modal-backdrop.in{
  opacity: 0.8;

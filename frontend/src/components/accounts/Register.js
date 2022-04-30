@@ -42,7 +42,7 @@ class Register extends Component {
         }
         const {username, email, password, password2} = this.state;
         return (
-            <div className="col-md-6 m-auto">
+            <div className="col-md-6 m-auto reg-card">
                 <div className="card card-body mt-5">
                     <h2>Регистрация</h2>
                     <form onSubmit={this.onSubmit}>
@@ -66,7 +66,7 @@ class Register extends Component {
                         </div>
                         <div className="form-group">
                             <label>Пароль</label>
-                            <input type="text"
+                            <input type="password"
                                    className="form-control"
                                    name="password"
                                    onChange={this.onChange}
@@ -75,7 +75,7 @@ class Register extends Component {
                         </div>
                         <div className="form-group">
                             <label>Подтвердите пароль</label>
-                            <input type="text"
+                            <input type="password"
                                    className="form-control"
                                    name="password2"
                                    onChange={this.onChange}

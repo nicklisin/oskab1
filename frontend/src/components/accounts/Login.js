@@ -30,7 +30,7 @@ class Login extends Component {
         }
         const {username, password} = this.state;
         return (
-            <div className="col-md-6 m-auto">
+            <div className="col-md-6 m-auto login-card">
                 <div className="card card-body mt-5">
                     <h2>Авторизация</h2>
                     <form onSubmit={this.onSubmit}>
@@ -45,7 +45,7 @@ class Login extends Component {
                         </div>
                         <div className="form-group">
                             <label>Пароль</label>
-                            <input type="text"
+                            <input type="password"
                                    className="form-control"
                                    name="password"
                                    onChange={this.onChange}
