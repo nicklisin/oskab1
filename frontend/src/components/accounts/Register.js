@@ -57,12 +57,13 @@ class Register extends Component {
                         </div>
                         <div className="form-group">
                             <label>Email</label>
-                            <input type="text"
+                            <input type="email"
                                    className="form-control"
                                    name="email"
                                    onChange={this.onChange}
                                    value={email}
                             />
+                            <div className="bd-callout bd-callout-warning">Указывайте действующий адрес почты, на него будут приходить уведомления.</div>
                         </div>
                         <div className="form-group">
                             <label>Пароль</label>

@@ -17,6 +17,7 @@ export class Alerts extends Component {
             if(error.msg.name){alert.error(`Имя: ${error.msg.name.join()}`)}
             if(error.msg.non_field_errors){alert.error('Неверный логин и/или пароль!')}
             if(error.msg.username){alert.error(`Логин: ${error.msg.username.join()}`)}
+            if(error.msg.email){alert.error(`Email: ${error.msg.email.join()}`)}
             if(error.msg.password){alert.error(`Пароль: ${error.msg.password.join()}`)}
             if(error.msg.delivery_range_from){alert.error(`Адрес отправления: ${error.msg.delivery_range_from.join()}`)}
             if(error.msg.delivery_range_max){alert.error(`Макс. расстояние доставки: ${error.msg.delivery_range_max.join()}`)}

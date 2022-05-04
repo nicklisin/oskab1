@@ -1,5 +1,24 @@
+
+.bd-callout {
+    font-size: 13px;
+    margin: 10px 0px;
+    border-left: 1px solid #e9ecef;
+    border-left-width: 0.25rem;
+    padding-left: 6px;
+}
+
+.bd-callout-warning {
+    border-left-color: #f0ad4e;
+}
+
+.main-table {
+    font-size: 14px;
+}
+
 .login-card, .reg-card {
     max-width: 340px;
+    border-radius: 4px;
+    box-shadow: #0000001f 0px 20px 20px;
 }
 
 .fade.modal-backdrop.in{

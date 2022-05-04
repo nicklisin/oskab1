@@ -27,7 +27,11 @@ class OfferAdmin(admin.ModelAdmin):
         return obj.owner.email
     owner_email.short_description = 'Email'
 
-    list_display = ('weight', 'supplier', 'price', 'created', 'status', 'owner_email')
+    def supplier_status(self, obj):
+        return obj.supplier.get_status_display()
+    supplier_status.short_description = 'Статус поставщика'
+
+    list_display = ('weight', 'supplier', 'supplier_status', 'price', 'created', 'status', 'owner_email')
     search_fields = ['status']
     list_filter = ('status', 'category')
     ordering = ['created']
@@ -58,6 +62,14 @@ class OfferAdmin(admin.ModelAdmin):
                     ('done', 'Реализовано')
                     )
         return super().formfield_for_choice_field(db_field, request, **kwargs)
+
+    def save_model(self, request, obj, form, change):
+        if change:
+            update_fields = []
+            if form.initial['status'] != form.cleaned_data['status']:
+                update_fields.append('status')
+            obj.save(update_fields=update_fields)
+        obj.save()
 
 
 admin.site.register(WasteCategory)

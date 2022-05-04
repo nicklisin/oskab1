@@ -3,6 +3,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import User
 
 
+User._meta.get_field('email').blank = False
+
+
 class Supplier(models.Model):
     STATUS_CHOICES = [
         ('unverified', 'Не проверен'),
@@ -18,7 +21,7 @@ class Supplier(models.Model):
     owner = models.ForeignKey(User, related_name='suppliers', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f'{self.name} ({self.get_status_display()})'
+        return f'{self.name}'
 
     class Meta:
         verbose_name = "Поставщик"
@@ -49,7 +52,7 @@ class Offer(models.Model):
         ('done', 'Реализовано')
     ]
     DELIVERY_CHOICES = [
-        ('removal', 'Вывоз'),
+        ('removal', 'Самовывоз'),
         ('delivery', 'Доставка')
     ]
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, verbose_name='Поставщик')
@@ -69,7 +72,7 @@ class Offer(models.Model):
     comment = models.TextField(max_length=1000, null=True, blank=True, verbose_name='Комментарий')
 
     def __str__(self):
-        return '%s %s %s кг' % (self.supplier, self.category, self.weight)
+        return '%s, %s кг, %s ₽' % (self.category, self.weight, self.price)
 
     class Meta:
         verbose_name = "Предложение"

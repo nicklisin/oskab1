@@ -133,7 +133,7 @@ class Form extends Component {
                         name="delivery_method"
                         onChange={this.onChange}
                         >
-                            <option key='0' value='removal'>Вывоз</option>
+                            <option key='0' value='removal'>Самовывоз</option>
                             <option key='1' value='delivery'>Доставка</option>
                         </select>
                     </div>

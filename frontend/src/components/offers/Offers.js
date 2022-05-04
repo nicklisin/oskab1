@@ -71,13 +71,12 @@ export class Offers extends Component {
                 {this.state.showAddForm ? <Form handleShowAddForm={this.handleShowAddForm} errors={this.state.errors} /> : null}
                 {this.state.showUpdateForm ? <OfferUpdateForm handleShowUpdateForm={this.handleShowUpdateForm} errors={this.state.errors} offer={this.state.offer} /> : null}
 
-                <div className="table-responsive">
+                <div className="main-table table-responsive">
                 <table className="table table-striped">
                     <thead>
                     <tr>
                         <th>Статус</th>
-                        <th>Дата</th>
-                        {/*<th>Компания</th>*/}
+                        <th>Изменено</th>
                         <th>Категория</th>
                         <th>Вес, кг</th>
                         <th>Засор, %</th>
@@ -115,7 +114,11 @@ export class Offers extends Component {
                             <td>{offer.price * offer.weight}</td>
                             <td>{offer.removal_address}</td>
                             <td>{offer.delivery_method_name}</td>
-                            <td><button onClick={this.props.deleteOffer.bind(this, offer.id)} className="btn btn-sm btn-danger">×</button></td>
+                            <td>
+                                {offer.status === 'draft' | offer.status === 'todelete' ?
+                                <button onClick={this.props.deleteOffer.bind(this, offer.id)} className="btn btn-sm btn-danger">×</button>
+                                :''}
+                            </td>
                         </tr>
                     ))}
                     </tbody>
