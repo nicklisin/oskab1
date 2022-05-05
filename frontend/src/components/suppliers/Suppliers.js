@@ -35,7 +35,7 @@ export class Suppliers extends Component {
                             <td>{supplier.name}</td>
                             <td>{supplier.address}</td>
                             <td>{supplier.status_name}</td>
-                            <td><button onClick={this.props.deleteSupplier.bind(this, supplier.id)} className="btn btn-sm btn-danger">Удалить</button></td>
+                            {/*<td><button onClick={this.props.deleteSupplier.bind(this, supplier.id)} className="btn btn-sm btn-danger">Удалить</button></td>*/}
                         </tr>
                     ))}
                     </tbody>

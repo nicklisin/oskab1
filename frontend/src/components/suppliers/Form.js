@@ -29,14 +29,29 @@ class Form extends Component {
         const { inn, name, address, license } = this.state;
         const supplier = { inn, name, address, license }
         this.props.addSupplier(supplier);
-        this.setState({
-            inn: '',
-            name: '',
-            address: '',
-            status: '',
-            license: ''
+
+        const delay = (ms) => {
+            return new Promise((r) => setTimeout(() => r(), ms))
+        }
+
+        function addSupplierAsync() {
+            return delay(200)
+        }
+
+        addSupplierAsync().then(()=>{
+            // Clear form
+            if(!this.props.errors.msg){
+                this.setState({
+                    inn: '',
+                    name: '',
+                    address: '',
+                    status: '',
+                    license: ''
+                })
+            }
         })
     }
+
 
     render() {
         const {inn, name, address, license} = this.state;

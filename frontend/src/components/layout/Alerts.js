@@ -13,8 +13,10 @@ export class Alerts extends Component {
     componentDidUpdate(prevProps) {
         const {error, alert, message} = this.props;
         if(error !== prevProps.error){
-            if(error.msg.inn){ alert.error('Поле ИНН обязательное!')}
-            if(error.msg.name){alert.error(`Имя: ${error.msg.name.join()}`)}
+            if(error.msg.inn){ alert.error(`ИНН: ${error.msg.name.join()}`)}
+            if(error.msg.name){alert.error(`Название: ${error.msg.name.join()}`)}
+            if(error.msg.address){alert.error(`Адрес: ${error.msg.address.join()}`)}
+            if(error.msg.license){alert.error(`Лицензия: ${error.msg.license.join()}`)}
             if(error.msg.non_field_errors){alert.error('Неверный логин и/или пароль!')}
             if(error.msg.username){alert.error(`Логин: ${error.msg.username.join()}`)}
             if(error.msg.email){alert.error(`Email: ${error.msg.email.join()}`)}
