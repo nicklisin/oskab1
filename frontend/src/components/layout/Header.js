@@ -9,6 +9,7 @@ class Header extends Component {
 
     static propTypes = {
         auth: PropTypes.object.isRequired,
+        suppliers: PropTypes.array.isRequired,
         logout: PropTypes.func.isRequired
     }
 
@@ -39,6 +40,19 @@ class Header extends Component {
                         </ul>
         )
 
+        const offersLink = (
+                           <li className="nav-item">
+                                  <NavLink
+                                  to='offers'
+                                  className={({isActive}) =>
+                                    "nav-link" + (isActive ? " active" : "")
+                                  }
+                                >
+                                  Сделки
+                                </NavLink>
+                            </li>
+        )
+
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container">
@@ -60,17 +74,8 @@ class Header extends Component {
                                   Главная
                                 </NavLink>
                             </li>
-                            <li className="nav-item">
-                                  <NavLink
-                                  to='offers'
-                                  className={({isActive}) =>
-                                    "nav-link" + (isActive ? " active" : "")
-                                  }
-                                >
-                                  Сделки
-                                </NavLink>
-                            </li>
 
+                            {this.props.suppliers.length ? offersLink : ''}
 
                         </ul>
                         {isAuthenticated ? authLinks : guestLinks }
@@ -83,7 +88,8 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth
+    auth: state.auth,
+    suppliers: state.suppliers.suppliers
 })
 
 export default connect(mapStateToProps, {logout})(Header);
