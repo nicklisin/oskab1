@@ -32,7 +32,7 @@ class Login extends Component {
         return (
             <div className="col-md-6 m-auto login-card">
                 <div className="card card-body mt-5">
-                    <h2>Вход</h2>
+                    <h2 className="text-center">Вход</h2>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <label>Логин</label>

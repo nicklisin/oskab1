@@ -44,7 +44,7 @@ class Register extends Component {
         return (
             <div className="col-md-6 m-auto reg-card">
                 <div className="card card-body mt-5">
-                    <h2>Регистрация</h2>
+                    <h2 className="text-center">Регистрация</h2>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <label>Логин</label>

@@ -9,6 +9,7 @@ import AlertTemplate from "react-alert-template-basic";
 import Header from "./layout/Header";
 import SuppliersDashboard from "./suppliers/SuppliersDashboard";
 import OffersDashboard from "./offers/OffersDashboard";
+import Legal from "./help/Legal";
 import Alerts from "./layout/Alerts";
 import Login from "./accounts/Login";
 import Register from "./accounts/Register";
@@ -45,6 +46,7 @@ class App extends Component {
                                     </Route>
                                     <Route path="/register" element={<Register/>} />
                                     <Route path="/login" element={<Login/>} />
+                                    <Route path="/legal" element={<Legal/>} />
                                 </Routes>
                             </div>
                         </Fragment>
