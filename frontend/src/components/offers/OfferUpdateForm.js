@@ -98,7 +98,7 @@ class OfferUpdateForm extends Component {
             delivery_range_price, supplier, status} = this.state;
 
         const agreement = (
-            <p className="mb-0">Отправляя предложение, вы подтверждаете, что ознакомлены и согласны с <a target="_blank" href="#/legal">условиями</a>&nbsp;
+            <p className="mb-0">Отправляя предложение, вы подтверждаете, что ознакомлены и согласны с <a target="_blank" href="#/help/legal">условиями</a>&nbsp;
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      className="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"

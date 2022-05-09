@@ -77,6 +77,16 @@ class Header extends Component {
 
                             {this.props.suppliers.length ? offersLink : ''}
 
+                            <li className="nav-item">
+                                <NavLink to='/help'
+                                  className={({isActive}) =>
+                                    "nav-link" + (isActive ? " active" : "")
+                                  }
+                                >
+                                  Справка
+                                </NavLink>
+                            </li>
+
                         </ul>
                         {isAuthenticated ? authLinks : guestLinks }
                     </div>
