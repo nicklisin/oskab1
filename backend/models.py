@@ -60,6 +60,7 @@ class Offer(models.Model):
     weight = models.PositiveIntegerField(default='', verbose_name='Вес, кг')
     impurity = models.PositiveSmallIntegerField(default='', verbose_name='Засор, %')
     price = models.PositiveIntegerField(default='', verbose_name='Цена, ₽/кг')
+    determent = models.PositiveSmallIntegerField(default=3, validators=[MinValueValidator(3)], verbose_name='Отсрочка платежа', null=True, blank=True)
     status = models.CharField(choices=STATUS_CHOICES, default='draft', max_length=20, verbose_name='Статус')
     delivery_method = models.CharField(choices=DELIVERY_CHOICES, max_length=20, verbose_name='Способ поставки')
     removal_address = models.CharField(max_length=300, verbose_name='Адрес вывоза', null=True, blank=True)

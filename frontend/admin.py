@@ -31,11 +31,11 @@ class OfferAdmin(admin.ModelAdmin):
         return obj.supplier.get_status_display()
     supplier_status.short_description = 'Статус поставщика'
 
-    list_display = ('weight', 'supplier', 'supplier_status', 'price', 'created', 'status', 'owner_email')
+    list_display = ('weight', 'supplier', 'supplier_status', 'price', 'determent', 'created', 'status', 'owner_email')
     search_fields = ['status']
     list_filter = ('status', 'category')
     ordering = ['created']
-    readonly_fields = ['supplier', 'category', 'weight', 'impurity', 'price', 'delivery_method',
+    readonly_fields = ['supplier', 'category', 'weight', 'impurity', 'price', 'determent', 'delivery_method',
     'removal_address', 'delivery_range_from', 'delivery_range_max',
     'delivery_range_price', 'created', 'updated', 'owner', 'owner_email']
 

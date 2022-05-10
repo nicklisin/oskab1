@@ -17,6 +17,7 @@ class Form extends Component {
         weight: '',
         impurity: '',
         price: '',
+        determent: 3,
         delivery_method: 'removal',
         removal_address: '',
         delivery_range_from: '',
@@ -37,10 +38,10 @@ class Form extends Component {
     }
     onSubmit = e => {
         e.preventDefault();
-        const { category, weight, impurity, price, delivery_method,
+        const { category, weight, impurity, price, determent, delivery_method,
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier } = this.state;
-        const offer = { category, weight, impurity, price, delivery_method,
+        const offer = { category, weight, impurity, price, determent, delivery_method,
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier }
         this.props.addOffer(offer)
@@ -61,6 +62,7 @@ class Form extends Component {
                     weight: '',
                     impurity: '',
                     price: '',
+                    determent: 3,
                     delivery_method: 'removal',
                     removal_address: '',
                     delivery_range_from: '',
@@ -76,7 +78,7 @@ class Form extends Component {
     }
 
     render() {
-        const {category, weight, impurity, price, delivery_method,
+        const {category, weight, impurity, price, determent, delivery_method,
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier} = this.state;
 
@@ -118,10 +120,19 @@ class Form extends Component {
                         <div className="form-group col-md-2 mb-2">
                             <label>Цена, ₽/кг</label>
                             <input className="form-control"
-                            type="text"
+                            type="number"
                             name="price"
                             onChange={this.onChange}
                             value={price}
+                            />
+                        </div>
+                        <div className="form-group col-md-2 mb-2">
+                            <label>Отсрочка, дней</label>
+                            <input className="form-control"
+                            type="number"
+                            name="determent"
+                            onChange={this.onChange}
+                            value={determent}
                             />
                         </div>
                     </div>

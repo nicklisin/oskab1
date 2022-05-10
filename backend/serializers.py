@@ -27,6 +27,7 @@ class OfferSerializer(serializers.ModelSerializer):
         instance.weight = validated_data.get('weight', instance.weight)
         instance.impurity = validated_data.get('impurity', instance.impurity)
         instance.price = validated_data.get('price', instance.price)
+        instance.determent = validated_data.get('determent', instance.determent)
         instance.status = validated_data.get('status', instance.status)
         instance.delivery_method = validated_data.get('delivery_method', instance.delivery_method)
         instance.removal_address = validated_data.get('removal_address', instance.removal_address)
@@ -42,7 +43,7 @@ class OfferSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Offer
-        fields = ('id', 'category', 'supplier', 'weight', 'impurity', 'price', 'status', 'delivery_method', 'removal_address', 'delivery_range_from', 'delivery_range_max', 'delivery_range_price', 'created', 'updated', 'owner', 'supplier_name', 'category_name', 'status_name', 'delivery_method_name')
+        fields = ('id', 'category', 'supplier', 'weight', 'impurity', 'price', 'determent', 'status', 'delivery_method', 'removal_address', 'delivery_range_from', 'delivery_range_max', 'delivery_range_price', 'created', 'updated', 'owner', 'supplier_name', 'category_name', 'status_name', 'delivery_method_name')
         extra_kwargs = {'removal_address': {'required': False, 'allow_null': True}, 'delivery_range_from': {'required': False, 'allow_null': True}, 'delivery_range_max': {'required': False, 'allow_null': True}, 'delivery_range_price': {'required': False, 'allow_null': True}}
 
 

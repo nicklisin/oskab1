@@ -81,6 +81,7 @@ export class Offers extends Component {
                         <th>Вес, кг</th>
                         <th>Засор, %</th>
                         <th>Цена, ₽/кг</th>
+                        <th>Отсрочка, дней</th>
                         <th>Стоимость, ₽</th>
                         <th>Адрес</th>
                         <th>Способ поставки</th>
@@ -90,11 +91,6 @@ export class Offers extends Component {
                     {this.props.offers.map(offer => (
                         <tr key={offer.id}>
                             <td>
-                                {/*<button type="button" className="btn btn-primary" data-toggle="modal"*/}
-                                {/*data-target="#updateFormModal" data-offer-id={offer.id}*/}
-                                {/*onClick={ (e) => { this.getOfferFunc(e, offer.id) } } >*/}
-                                {/*    Edit*/}
-                                {/*</button>*/}
                                 {offer.status === 'draft'
                                 ? <button type="button" className="btn btn-primary btn-sm me-1" data-offer-id={offer.id}
                                 onClick={ (e) => { this.getOfferFunc(e, offer.id) } } >
@@ -111,6 +107,7 @@ export class Offers extends Component {
                             <td>{offer.weight}</td>
                             <td>{offer.impurity}</td>
                             <td>{offer.price}</td>
+                            <td>{offer.determent}</td>
                             <td>{offer.price * offer.weight}</td>
                             <td>{offer.removal_address}</td>
                             <td>{offer.delivery_method_name}</td>

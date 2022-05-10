@@ -26,6 +26,7 @@ class OfferUpdateForm extends Component {
         weight: '',
         impurity: '',
         price: '',
+        determent: 3,
         delivery_method: 'removal',
         removal_address: '',
         delivery_range_from: '',
@@ -50,10 +51,10 @@ class OfferUpdateForm extends Component {
     }
     onSubmit = e => {
         e.preventDefault();
-        const { id, category, weight, impurity, price, delivery_method,
+        const { id, category, weight, impurity, price, determent, delivery_method,
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier, created, owner, status, updated} = this.state;
-        const offer = { id, category, weight, impurity, price, delivery_method,
+        const offer = { id, category, weight, impurity, price, determent, delivery_method,
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier, created, owner, status }
         this.props.updateOffer(id, offer)
@@ -75,6 +76,7 @@ class OfferUpdateForm extends Component {
                     weight: '',
                     impurity: '',
                     price: '',
+                    determent: 3,
                     delivery_method: 'removal',
                     removal_address: '',
                     delivery_range_from: '',
@@ -93,7 +95,7 @@ class OfferUpdateForm extends Component {
     }
 
     render() {
-        const {category, weight, impurity, price, delivery_method,
+        const {category, weight, impurity, price, determent, delivery_method,
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier, status} = this.state;
 
@@ -162,6 +164,15 @@ class OfferUpdateForm extends Component {
                             name="price"
                             onChange={this.onChange}
                             value={price}
+                            />
+                        </div>
+                        <div className="form-group col-md-2 mb-2">
+                            <label>Отсрочка, дней</label>
+                            <input className="form-control"
+                            type="number"
+                            name="determent"
+                            onChange={this.onChange}
+                            value={determent}
                             />
                         </div>
                     </div>

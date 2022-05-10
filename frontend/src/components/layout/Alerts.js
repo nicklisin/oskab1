@@ -26,6 +26,7 @@ export class Alerts extends Component {
             if(error.msg.delivery_range_price){alert.error(`Цена доставки (за 1 км): ${error.msg.delivery_range_price.join()}`)}
             if(error.msg.impurity){alert.error(`Засор: ${error.msg.impurity.join()}`)}
             if(error.msg.price){alert.error(`Цена: ${error.msg.price.join()}`)}
+            if(error.msg.determent){alert.error(`Цена: ${error.msg.determent.join()}`)}
             if(error.msg.removal_address){alert.error(`Адрес вывоза: ${error.msg.removal_address.join()}`)}
             if(error.msg.weight){alert.error(`Вес: ${error.msg.weight.join()}`)}
         }
