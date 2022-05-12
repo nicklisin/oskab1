@@ -130,6 +130,7 @@ class Form extends Component {
                             <label>Отсрочка, дней</label>
                             <input className="form-control"
                             type="number"
+                            min="5"
                             name="determent"
                             onChange={this.onChange}
                             value={determent}

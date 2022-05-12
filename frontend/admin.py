@@ -22,6 +22,7 @@ class OfferAdmin(admin.ModelAdmin):
             return qs.filter(status__in=['sended', 'onreview', 'prerejected', 'accepted', 'rejected', 'done'])
         if has_group(request.user, "moderators"):
             return qs.filter(status__in=['onreview', 'prerejected', 'accepted', 'rejected', 'done'])
+        return qs
 
     def owner_email(self, obj):
         return obj.owner.email
