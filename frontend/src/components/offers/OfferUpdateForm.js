@@ -101,6 +101,8 @@ class OfferUpdateForm extends Component {
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier, status} = this.state;
 
+        let today = new Date().toISOString().slice(0, 10)
+
         const agreement = (
             <p className="mb-0">Отправляя предложение, вы подтверждаете, что ознакомлены и согласны с <a target="_blank" href="#/help/legal">условиями</a>&nbsp;
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -182,6 +184,7 @@ class OfferUpdateForm extends Component {
                             <label>Дата поставки</label>
                             <input className="form-control"
                             type="date"
+                            min={today}
                             name="delivery_date"
                             onChange={this.onChange}
                             value={delivery_date}

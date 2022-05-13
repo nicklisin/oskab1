@@ -84,6 +84,8 @@ class Form extends Component {
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier} = this.state;
 
+        let today = new Date().toISOString().slice(0, 10)
+
         return (
             <div className="card card-body mt-4 mb-4">
                 <h2>Добавить предложение</h2>
@@ -142,6 +144,7 @@ class Form extends Component {
                             <label>Дата поставки</label>
                             <input className="form-control"
                             type="date"
+                            min={today}
                             name="delivery_date"
                             onChange={this.onChange}
                             value={delivery_date}
