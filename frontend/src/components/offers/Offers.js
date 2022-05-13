@@ -85,6 +85,7 @@ export class Offers extends Component {
                         <th>Стоимость, ₽</th>
                         <th>Адрес</th>
                         <th>Способ поставки</th>
+                        <th>Дата поставки</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -108,9 +109,10 @@ export class Offers extends Component {
                             <td>{offer.impurity}</td>
                             <td>{offer.price}</td>
                             <td>{offer.determent}</td>
-                            <td>{offer.price * offer.weight}</td>
+                            <td>{(offer.price * offer.weight).toFixed(2)}</td>
                             <td>{offer.removal_address}</td>
                             <td>{offer.delivery_method_name}</td>
+                            <td><nobr>{offer.delivery_date}</nobr></td>
                             <td>
                                 {offer.status === 'draft' | offer.status === 'todelete' ?
                                 <button onClick={this.props.deleteOffer.bind(this, offer.id)} className="btn btn-sm btn-danger">×</button>

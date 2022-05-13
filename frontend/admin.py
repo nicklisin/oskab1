@@ -26,19 +26,22 @@ class OfferAdmin(admin.ModelAdmin):
 
     def owner_email(self, obj):
         return obj.owner.email
+
     owner_email.short_description = 'Email'
 
     def supplier_status(self, obj):
         return obj.supplier.get_status_display()
+
     supplier_status.short_description = 'Статус поставщика'
 
-    list_display = ('weight', 'supplier', 'supplier_status', 'price', 'determent', 'created', 'status', 'owner_email')
+    list_display = (
+    'weight', 'supplier', 'supplier_status', 'price', 'determent', 'delivery_date', 'created', 'status', 'owner_email')
     search_fields = ['status']
     list_filter = ('status', 'category')
     ordering = ['created']
     readonly_fields = ['supplier', 'category', 'weight', 'impurity', 'price', 'determent', 'delivery_method',
-    'removal_address', 'delivery_range_from', 'delivery_range_max',
-    'delivery_range_price', 'created', 'updated', 'owner', 'owner_email']
+                       'removal_address', 'delivery_range_from', 'delivery_range_max', 'delivery_date',
+                       'delivery_range_price', 'created', 'updated', 'owner', 'owner_email']
 
     def get_readonly_fields(self, request, obj=None):
         if request.user.is_superuser:
@@ -61,7 +64,7 @@ class OfferAdmin(admin.ModelAdmin):
                     ('accepted', 'Принято'),
                     ('rejected', 'Отклонено'),
                     ('done', 'Реализовано')
-                    )
+                )
         return super().formfield_for_choice_field(db_field, request, **kwargs)
 
     def save_model(self, request, obj, form, change):

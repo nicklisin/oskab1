@@ -30,6 +30,7 @@ class OfferSerializer(serializers.ModelSerializer):
         instance.determent = validated_data.get('determent', instance.determent)
         instance.status = validated_data.get('status', instance.status)
         instance.delivery_method = validated_data.get('delivery_method', instance.delivery_method)
+        instance.delivery_date = validated_data.get('delivery_date', instance.delivery_date)
         instance.removal_address = validated_data.get('removal_address', instance.removal_address)
         instance.delivery_range_from = validated_data.get('delivery_range_from', instance.delivery_range_from)
         instance.delivery_range_max = validated_data.get('delivery_range_max', instance.delivery_range_max)
@@ -43,8 +44,8 @@ class OfferSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Offer
-        fields = ('id', 'category', 'supplier', 'weight', 'impurity', 'price', 'determent', 'status', 'delivery_method', 'removal_address', 'delivery_range_from', 'delivery_range_max', 'delivery_range_price', 'created', 'updated', 'owner', 'supplier_name', 'category_name', 'status_name', 'delivery_method_name')
-        extra_kwargs = {'removal_address': {'required': False, 'allow_null': True}, 'delivery_range_from': {'required': False, 'allow_null': True}, 'delivery_range_max': {'required': False, 'allow_null': True}, 'delivery_range_price': {'required': False, 'allow_null': True}}
+        fields = ('id', 'category', 'supplier', 'weight', 'impurity', 'price', 'determent', 'status', 'delivery_method', 'delivery_date', 'removal_address', 'delivery_range_from', 'delivery_range_max', 'delivery_range_price', 'created', 'updated', 'owner', 'supplier_name', 'category_name', 'status_name', 'delivery_method_name')
+        extra_kwargs = {'removal_address': {'required': False, 'allow_null': True}, 'delivery_range_from': {'required': False, 'allow_null': True}, 'delivery_range_max': {'required': False, 'allow_null': True}, 'delivery_range_price': {'required': False, 'allow_null': True}, 'delivery_date': {'required': False, 'allow_null': True}}
 
 
 class WasteCategorySerializer(serializers.ModelSerializer):

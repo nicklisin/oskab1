@@ -28,6 +28,7 @@ class OfferUpdateForm extends Component {
         price: '',
         determent: 5,
         delivery_method: 'removal',
+        delivery_date: '',
         removal_address: '',
         delivery_range_from: '',
         delivery_range_max: '',
@@ -51,10 +52,10 @@ class OfferUpdateForm extends Component {
     }
     onSubmit = e => {
         e.preventDefault();
-        const { id, category, weight, impurity, price, determent, delivery_method,
+        const { id, category, weight, impurity, price, determent, delivery_method, delivery_date,
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier, created, owner, status, updated} = this.state;
-        const offer = { id, category, weight, impurity, price, determent, delivery_method,
+        const offer = { id, category, weight, impurity, price, determent, delivery_method, delivery_date,
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier, created, owner, status }
         this.props.updateOffer(id, offer)
@@ -78,6 +79,7 @@ class OfferUpdateForm extends Component {
                     price: '',
                     determent: 5,
                     delivery_method: 'removal',
+                    delivery_date: '',
                     removal_address: '',
                     delivery_range_from: '',
                     delivery_range_max: '',
@@ -95,7 +97,7 @@ class OfferUpdateForm extends Component {
     }
 
     render() {
-        const {category, weight, impurity, price, determent, delivery_method,
+        const {category, weight, impurity, price, determent, delivery_method, delivery_date,
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier, status} = this.state;
 
@@ -174,6 +176,15 @@ class OfferUpdateForm extends Component {
                             name="determent"
                             onChange={this.onChange}
                             value={determent}
+                            />
+                        </div>
+                        <div className="form-group col-md-2 mb-2">
+                            <label>Дата поставки</label>
+                            <input className="form-control"
+                            type="date"
+                            name="delivery_date"
+                            onChange={this.onChange}
+                            value={delivery_date}
                             />
                         </div>
                     </div>

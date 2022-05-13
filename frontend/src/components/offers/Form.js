@@ -19,6 +19,7 @@ class Form extends Component {
         price: '',
         determent: 5,
         delivery_method: 'removal',
+        delivery_date: '',
         removal_address: '',
         delivery_range_from: '',
         delivery_range_max: 0,
@@ -38,10 +39,10 @@ class Form extends Component {
     }
     onSubmit = e => {
         e.preventDefault();
-        const { category, weight, impurity, price, determent, delivery_method,
+        const { category, weight, impurity, price, determent, delivery_method, delivery_date,
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier } = this.state;
-        const offer = { category, weight, impurity, price, determent, delivery_method,
+        const offer = { category, weight, impurity, price, determent, delivery_method, delivery_date,
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier }
         this.props.addOffer(offer)
@@ -64,6 +65,7 @@ class Form extends Component {
                     price: '',
                     determent: 5,
                     delivery_method: 'removal',
+                    delivery_date: '',
                     removal_address: '',
                     delivery_range_from: '',
                     delivery_range_max: 0,
@@ -78,7 +80,7 @@ class Form extends Component {
     }
 
     render() {
-        const {category, weight, impurity, price, determent, delivery_method,
+        const {category, weight, impurity, price, determent, delivery_method, delivery_date,
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier} = this.state;
 
@@ -134,6 +136,15 @@ class Form extends Component {
                             name="determent"
                             onChange={this.onChange}
                             value={determent}
+                            />
+                        </div>
+                        <div className="form-group col-md-2 mb-2">
+                            <label>Дата поставки</label>
+                            <input className="form-control"
+                            type="date"
+                            name="delivery_date"
+                            onChange={this.onChange}
+                            value={delivery_date}
                             />
                         </div>
                     </div>

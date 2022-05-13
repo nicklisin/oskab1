@@ -63,6 +63,7 @@ class Offer(models.Model):
     determent = models.PositiveSmallIntegerField(default='', validators=[MinValueValidator(5)], verbose_name='Отсрочка платежа', null=True, blank=True)
     status = models.CharField(choices=STATUS_CHOICES, default='draft', max_length=20, verbose_name='Статус')
     delivery_method = models.CharField(choices=DELIVERY_CHOICES, max_length=20, verbose_name='Способ поставки')
+    delivery_date = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True, verbose_name='Дата поставки')
     removal_address = models.CharField(max_length=300, verbose_name='Адрес вывоза', null=True, blank=True)
     delivery_range_from = models.CharField(max_length=500, verbose_name='Доставка из', null=True, blank=True)
     delivery_range_max = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(5000)], verbose_name='Макс. расстояние доставки', null=True, blank=True)
