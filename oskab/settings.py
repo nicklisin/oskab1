@@ -19,10 +19,15 @@ INSTALLED_APPS = [
     'rest_framework',
     'frontend',
     'knox',
+    'django_rest_passwordreset',
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',)
+}
+
+REST_KNOX = {
+  'AUTO_REFRESH': True,
 }
 
 MIDDLEWARE = [

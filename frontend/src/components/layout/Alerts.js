@@ -19,7 +19,11 @@ export class Alerts extends Component {
             if(error.msg.license){alert.error(`Лицензия: ${error.msg.license.join()}`)}
             if(error.msg.non_field_errors){alert.error('Неверный логин и/или пароль!')}
             if(error.msg.username){alert.error(`Логин: ${error.msg.username.join()}`)}
-            if(error.msg.email){alert.error(`Email: ${error.msg.email.join()}`)}
+            if(error.msg.email){
+                if(error.msg.email[0] === "We couldn\'t find an account associated with that email. Please try a different e-mail address."){
+                    alert.error('Мы не смогли найти аккаунт, связанный с этой почтой. Попробуйте другой адрес.')
+                } else {alert.error(`Email: ${error.msg.email.join()}`)}
+            }
             if(error.msg.password){alert.error(`Пароль: ${error.msg.password.join()}`)}
             if(error.msg.delivery_range_from){alert.error(`Адрес отправления: ${error.msg.delivery_range_from.join()}`)}
             if(error.msg.delivery_range_max){alert.error(`Макс. расстояние доставки: ${error.msg.delivery_range_max.join()}`)}

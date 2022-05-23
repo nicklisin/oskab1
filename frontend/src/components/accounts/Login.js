@@ -55,7 +55,7 @@ class Login extends Component {
                         <div className="form-group">
                             <button type="submit" className="btn btn-primary mt-2 mb-4">Войти</button>
                         </div>
-                        <p>Нет аккаунта? <Link to="/register">Зарегистрироваться</Link></p>
+                        <p><Link to="/forgot">Забыли пароль?</Link></p>
                     </form>
                 </div>
 

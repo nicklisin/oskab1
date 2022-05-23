@@ -16,6 +16,8 @@ import Login from "./accounts/Login";
 import Register from "./accounts/Register";
 import PrivateRoute from "./common/PrivateRoute";
 import {loadUser} from "../actions/auth";
+import Forgot from "./accounts/Forgot";
+import Reset from "./accounts/Reset";
 
 
 //Alert options
@@ -47,6 +49,8 @@ class App extends Component {
                                     </Route>
                                     <Route path="/register" element={<Register/>} />
                                     <Route path="/login" element={<Login/>} />
+                                    <Route path="/forgot" element={<Forgot/>} />
+                                    <Route path="/reset" element={<Reset/>} />
                                     <Route path="/help" element={<Help/>} />
                                     <Route path="/help/legal" element={<Legal/>} />
                                 </Routes>
