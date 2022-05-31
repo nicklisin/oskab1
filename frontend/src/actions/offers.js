@@ -1,16 +1,22 @@
 import axios from "axios";
-import {GET_OFFERS, GET_OFFER, DELETE_OFFER, ADD_OFFER, UPDATE_OFFER, GET_CATEGORIES} from "./types";
+import {GET_OFFERS, GET_OFFER, DELETE_OFFER, ADD_OFFER, UPDATE_OFFER, GET_CATEGORIES, GETTING_OFFERS} from "./types";
 import {createMessage, returnErrors} from "./messages";
 import {tokenConfig} from "./auth";
 
 // GET OFFERS
-export const getOffers = ()=> (dispatch, getState) => {
-    axios.get('/api/offers/', tokenConfig(getState))
+export const getOffers = (page)=> (dispatch, getState) => {
+    dispatch({type:GETTING_OFFERS})
+    let url = `/api/offers/`
+    if(page){
+        url = url+`?page=${page}`
+    }
+    axios.get(url, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: GET_OFFERS,
                 payload: res.data
             })
+
         }).catch(err=> dispatch(returnErrors(err.response.data, err.response.status)))
 }
 

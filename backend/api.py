@@ -1,8 +1,17 @@
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import OrderingFilter
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
 from backend.models import Supplier, WasteCategory, Offer
 from rest_framework import viewsets, permissions
 from backend.serializers import SupplierSerializer, OfferSerializer, WasteCategorySerializer
+
+
+class SetPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 20
 
 
 class SupplierViewSet(viewsets.ModelViewSet):
@@ -22,6 +31,10 @@ class SupplierViewSet(viewsets.ModelViewSet):
 
 class OfferViewSet(viewsets.ModelViewSet):
     queryset = Offer.objects.all()
+    pagination_class = SetPagination
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filter_fields = ['updated', 'created']
+    ordering = '-updated'
     permission_classes = [
         permissions.IsAuthenticated
     ]

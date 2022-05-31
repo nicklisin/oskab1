@@ -1,15 +1,28 @@
-import {ADD_OFFER, GET_OFFER, DELETE_OFFER, GET_CATEGORIES, GET_OFFERS, UPDATE_OFFER} from '../actions/types.js'
+import {ADD_OFFER, GETTING_OFFERS, GET_OFFER, DELETE_OFFER, GET_CATEGORIES, GET_OFFERS, UPDATE_OFFER} from '../actions/types.js'
 
 const initialState = {
-    offers: []
+    offers: [],
+    isLoading: false,
+    count: 1,
+    next: '',
+    previous: null
 }
 
 export default function (state = initialState, action){
     switch (action.type){
+        case GETTING_OFFERS:
+            return {
+                ...state,
+                isLoading: true
+            }
         case GET_OFFERS:
             return {
                 ...state,
-                offers: action.payload
+                offers: action.payload.results,
+                isLoading: false,
+                count: action.payload.count,
+                next: action.payload.next,
+                previous: action.payload.previous
             }
         case GET_OFFER:
             return {

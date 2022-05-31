@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {getSuppliers} from "../../actions/suppliers";
+import {getOffers} from "../../actions/offers";
 import {getCategories} from "../../actions/offers";
 import {addOffer} from "../../actions/offers";
 import PropTypes from "prop-types";
@@ -10,6 +11,7 @@ class Form extends Component {
     componentDidMount() {
         this.props.getSuppliers();
         this.props.getCategories();
+        this.props.getOffers();
     }
 
     state = {
@@ -30,6 +32,7 @@ class Form extends Component {
     static propTypes = {
         suppliers: PropTypes.array.isRequired,
         addOffer: PropTypes.func.isRequired,
+        getOffers: PropTypes.func.isRequired,
         getSuppliers: PropTypes.func.isRequired,
         getCategories: PropTypes.func.isRequired
     }
@@ -55,6 +58,7 @@ class Form extends Component {
             return delay(200)
         }
 
+
         addOfferAsync().then(()=>{
             // Clear form
             if(!this.props.errors.msg){
@@ -74,6 +78,7 @@ class Form extends Component {
                     })
                 this.props.handleShowAddForm()
             }
+            this.props.getOffers()
         })
 
 
@@ -231,4 +236,4 @@ const mapStateToProps = state => ({
     errors: state.errors
 })
 
-export default connect(mapStateToProps, {getCategories, addOffer, getSuppliers})(Form);
+export default connect(mapStateToProps, {getCategories, getOffers, addOffer, getSuppliers})(Form);

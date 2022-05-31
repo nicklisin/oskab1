@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {getSuppliers} from "../../actions/suppliers";
 import {getCategories} from "../../actions/offers";
+import {getOffers} from "../../actions/offers";
 import {updateOffer} from "../../actions/offers";
 import PropTypes from "prop-types";
 
@@ -43,6 +44,7 @@ class OfferUpdateForm extends Component {
     static propTypes = {
         suppliers: PropTypes.array.isRequired,
         updateOffer: PropTypes.func.isRequired,
+        getOffers: PropTypes.func.isRequired,
         getSuppliers: PropTypes.func.isRequired,
         getCategories: PropTypes.func.isRequired
     }
@@ -92,6 +94,7 @@ class OfferUpdateForm extends Component {
                     })
                 this.props.handleShowUpdateForm()
             }
+            this.props.getOffers()
         })
 
     }
@@ -284,4 +287,4 @@ const mapStateToProps = state => ({
     offer: state.offers.offer
 })
 
-export default connect(mapStateToProps, {getCategories, updateOffer, getSuppliers})(OfferUpdateForm);
+export default connect(mapStateToProps, {getCategories, updateOffer, getSuppliers, getOffers})(OfferUpdateForm);

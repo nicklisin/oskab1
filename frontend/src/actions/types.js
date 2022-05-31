@@ -1,3 +1,4 @@
+export const GETTING_OFFERS = "GETTING_OFFERS";
 export const GET_OFFERS = "GET_OFFERS";
 export const GET_OFFER = "GET_OFFER";
 export const ADD_OFFER = "ADD_OFFER";

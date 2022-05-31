@@ -9,18 +9,21 @@ export class Offers extends Component {
 
     state = {
         showAddForm: false,
-        showUpdateForm: false
+        showUpdateForm: false,
+        currentPage: 1
     }
 
     static propTypes = {
-        offers: PropTypes.array.isRequired,
+        offers: PropTypes.object.isRequired,
         getOffers: PropTypes.func.isRequired,
         getOffer: PropTypes.func.isRequired,
-        deleteOffer: PropTypes.func.isRequired
+        deleteOffer: PropTypes.func.isRequired,
+        isLoading: PropTypes.bool.isRequired,
+        count: PropTypes.number,
     }
 
     componentDidMount() {
-        this.props.getOffers();
+        this.props.getOffers(this.state.currentPage);
     }
 
     handleShowAddForm = () => {
@@ -48,6 +51,19 @@ export class Offers extends Component {
             this.handleShowUpdateForm()
         }
 
+    paginate = (e, val) => {
+        e.preventDefault();
+        this.setState({ currentPage: val})
+        this.props.getOffers(val);
+    }
+
+    changePage = (e,val) => {
+        e.preventDefault();
+        const num = (val === 'next') ? 1 : -1;
+        this.setState({ currentPage: this.state.currentPage+num})
+        this.props.getOffers(this.state.currentPage+num);
+    }
+
     getStatusColor(status) {
     if (status === 'accepted' || status === 'done') {
         return 'text-success';
@@ -59,20 +75,29 @@ export class Offers extends Component {
         return 'text-info';
     }
     return '';
+
 }
 
     render() {
 
+        const loader = <div className="loader w-100 h-500-px text-center">
+                    <div className="spinner-border text-primary" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+
         return (
             <div>
                 <h1 id="#topheader">Предложения</h1>
+
                 <button onClick={ this.handleShowAddForm } type="button" className="btn btn-primary mt-4 small">+ Добавить предложение</button>
 
                 {this.state.showAddForm ? <Form handleShowAddForm={this.handleShowAddForm} errors={this.state.errors} /> : null}
                 {this.state.showUpdateForm ? <OfferUpdateForm handleShowUpdateForm={this.handleShowUpdateForm} errors={this.state.errors} offer={this.state.offer} /> : null}
 
+                {this.props.isLoading ? loader :
                 <div className="main-table table-responsive">
-                <table className="table table-striped">
+                <table className="table">
                     <thead>
                     <tr>
                         <th>Статус</th>
@@ -88,9 +113,10 @@ export class Offers extends Component {
                         <th>Дата поставки</th>
                     </tr>
                     </thead>
+
                     <tbody>
-                    {this.props.offers.map(offer => (
-                        <tr key={offer.id}>
+                    {this.props.offers.offers.map(offer => (
+                        <tr key={offer.id} className="main-table-row">
                             <td>
                                 {offer.status === 'draft'
                                 ? <button type="button" className="btn btn-primary btn-sm me-1" data-offer-id={offer.id}
@@ -121,17 +147,34 @@ export class Offers extends Component {
                         </tr>
                     ))}
                     </tbody>
-                </table>
-                </div>
 
+                </table>
+                    <nav aria-label="Page navigation example">
+                        <ul className="pagination justify-content-end">
+                            <li className={this.props.offers.previous ? 'page-item': 'page-item disabled'}><a onClick={ (e)=>{this.changePage(e,'prev')} } className="page-link" href="#">&laquo;</a></li>
+                            {[...Array(Math.ceil(this.props.count/10)).fill(undefined).map((val, idx)=>idx+1)].map((val, index)=>(
+                                <li key={index} className={this.state.currentPage === val ? 'page-item active': 'page-item'}>
+                                    <a onClick={ (e) => {this.paginate(e, val)} } className="page-link" href="#">{val}</a>
+                                </li>
+                            )
+                            )}
+                            <li className={this.props.offers.next ? 'page-item': 'page-item disabled'}><a onClick={ (e)=>{this.changePage(e,'next')} } className="page-link" href="#">&raquo;</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            }
             </div>
+
         );
     }
 }
 
 const mapStateToProps = state => ({
-    offers: state.offers.offers,
-    offer: state.offers.offer
+    offers: state.offers,
+    count: state.offers.count,
+    currentPage: state.offers.currentPage,
+    offer: state.offers.offer,
+    isLoading: state.offers.isLoading
 })
 
 export default connect(mapStateToProps, { getOffers, getOffer, deleteOffer })(Offers);
