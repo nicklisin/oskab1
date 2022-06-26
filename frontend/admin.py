@@ -1,4 +1,9 @@
 from django.contrib import admin
+from rangefilter.filters import DateRangeFilter, DateTimeRangeFilter
+from admin_totals.admin import ModelAdminTotals
+from django.db.models import Sum, Avg
+from django.db.models.functions import Round
+from django.db.models.functions import Coalesce
 
 from backend.models import *
 
@@ -15,7 +20,7 @@ class SupplierAdmin(admin.ModelAdmin):
 
 
 @admin.register(Offer)
-class OfferAdmin(admin.ModelAdmin):
+class OfferAdmin(ModelAdminTotals):
     def get_queryset(self, request):
         qs = super(OfferAdmin, self).get_queryset(request)
         if has_group(request.user, "oskabstaff"):
@@ -34,11 +39,17 @@ class OfferAdmin(admin.ModelAdmin):
 
     supplier_status.short_description = 'Статус поставщика'
 
+    def offer_sum(self, obj):
+        return obj.price * obj.weight
+
+    offer_sum.short_description = 'Сумма'
+
     list_display = (
-    'weight', 'supplier', 'supplier_status', 'price', 'determent', 'delivery_date', 'created', 'status', 'owner_email')
+        'weight', 'offer_sum', 'supplier', 'supplier_status', 'price', 'determent', 'delivery_date', 'created', 'status', 'owner_email')
     search_fields = ['status']
-    list_filter = ('status', 'category')
-    ordering = ['created']
+    list_filter = (('created', DateRangeFilter), 'status', 'category')
+    list_totals = [('weight', Sum), ('price', lambda price: Round(Avg(price), 2))]
+    ordering = ['-created']
     readonly_fields = ['supplier', 'category', 'weight', 'impurity', 'price', 'determent', 'delivery_method',
                        'removal_address', 'delivery_range_from', 'delivery_range_max', 'delivery_date',
                        'delivery_range_price', 'created', 'updated', 'owner', 'owner_email']

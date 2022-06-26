@@ -21,6 +21,8 @@ INSTALLED_APPS = [
     'knox',
     'django_rest_passwordreset',
     'django_filters',
+    'rangefilter',
+    'admin_totals',
 ]
 
 REST_FRAMEWORK = {
