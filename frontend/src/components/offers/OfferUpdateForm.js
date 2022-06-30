@@ -5,12 +5,17 @@ import {getCategories} from "../../actions/offers";
 import {getOffers} from "../../actions/offers";
 import {updateOffer} from "../../actions/offers";
 import PropTypes from "prop-types";
+import Tooltip from "../tools/Tooltip";
 
 class OfferUpdateForm extends Component {
 
     componentDidMount() {
         this.props.getSuppliers();
         this.props.getCategories();
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -157,6 +162,7 @@ class OfferUpdateForm extends Component {
                         </div>
                         <div className="form-group col-md-2 mb-2">
                             <label>Засор, %</label>
+                            <Tooltip title="Слитые АКБ до 2%<br/>Неслитые АКБ до 15%" />
                             <input className="form-control"
                             type="text"
                             name="impurity"
@@ -203,8 +209,8 @@ class OfferUpdateForm extends Component {
                             value={delivery_method}
                             onChange={this.onChange}
                             >
-                                <option key='0' value='removal'>Самовывоз</option>
-                                <option key='1' value='delivery'>Доставка</option>
+                                <option key='0' value='removal'>Вывоз со склада Поставщика</option>
+                                <option key='1' value='delivery'>Доставка до склада Покупателя</option>
                             </select>
                         </div>
                     </div>

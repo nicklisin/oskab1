@@ -66,3 +66,41 @@ html, body, #root {
 #__react-alert__ div {
     z-index: 1100 !important;
 }
+
+.tooltip__icon {
+    vertical-align: text-top;
+    margin-left: 6px;
+    line-height: 1;
+}
+
+.tooltip__icon-svg:hover {
+    fill: #acacac;
+}
+
+.tooltip-inner {
+    background-color: #fff;
+    color: #000;
+}
+
+.tooltip-arrow {
+
+}
+
+.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: #fff;
+}
+
+.tooltip {
+
+}
+
+.tooltip.show {
+    opacity: 1;
+}
+
+.tooltip-inner {
+    box-shadow: 0 15px 25px rgba(77,85,103,.15),0 0 10px rgba(77,85,103,.1);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: left;
+}

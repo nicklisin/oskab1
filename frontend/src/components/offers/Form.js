@@ -5,6 +5,7 @@ import {getOffers} from "../../actions/offers";
 import {getCategories} from "../../actions/offers";
 import {addOffer} from "../../actions/offers";
 import PropTypes from "prop-types";
+import Tooltip from "../tools/Tooltip";
 
 class Form extends Component {
 
@@ -12,6 +13,10 @@ class Form extends Component {
         this.props.getSuppliers();
         this.props.getCategories();
         this.props.getOffers();
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
     }
 
     state = {
@@ -119,6 +124,7 @@ class Form extends Component {
                         </div>
                         <div className="form-group col-md-2 mb-2">
                             <label>Засор, %</label>
+                            <Tooltip title="Слитые АКБ до 2%<br/>Неслитые АКБ до 15%" />
                             <input className="form-control"
                             type="text"
                             name="impurity"
@@ -157,15 +163,15 @@ class Form extends Component {
                         </div>
                     </div>
                     <div className="row mb-2">
-                        <div className="form-group col-md-2 mb-2">
+                        <div className="form-group col-md-4 mb-2">
                         <label>Способ поставки</label>
                         <select className="form-select"
                         type="text"
                         name="delivery_method"
                         onChange={this.onChange}
                         >
-                            <option key='0' value='removal'>Самовывоз</option>
-                            <option key='1' value='delivery'>Доставка</option>
+                            <option key='0' value='removal'>Вывоз со склада Поставщика</option>
+                            <option key='1' value='delivery'>Доставка до склада Покупателя</option>
                         </select>
                     </div>
                     </div>
