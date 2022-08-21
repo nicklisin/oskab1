@@ -35,8 +35,9 @@ class Login extends Component {
                     <h2 className="text-center">Вход</h2>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
-                            <label>Логин</label>
+                            <label htmlFor="username">Логин</label>
                             <input type="text"
+                                   id="username"
                                    className="form-control"
                                    name="username"
                                    onChange={this.onChange}
@@ -44,8 +45,9 @@ class Login extends Component {
                             />
                         </div>
                         <div className="form-group">
-                            <label>Пароль</label>
+                            <label htmlFor="password">Пароль</label>
                             <input type="password"
+                                   id="password"
                                    className="form-control"
                                    name="password"
                                    onChange={this.onChange}
@@ -53,7 +55,7 @@ class Login extends Component {
                             />
                         </div>
                         <div className="form-group">
-                            <button type="submit" className="btn btn-primary mt-2 mb-4">Войти</button>
+                            <button disabled={!username.length || !password.length} name="submit" type="submit" className="btn btn-primary mt-2 mb-4">Войти</button>
                         </div>
                         <p><Link to="/forgot">Забыли пароль?</Link></p>
                     </form>

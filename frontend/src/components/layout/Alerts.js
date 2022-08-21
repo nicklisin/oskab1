@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {withAlert} from "react-alert";
+import {withAlert} from "@blaumaus/react-alert";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 

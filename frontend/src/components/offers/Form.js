@@ -90,7 +90,7 @@ class Form extends Component {
     }
 
     render() {
-        const {category, weight, impurity, price, determent, delivery_method, delivery_date,
+        const {weight, impurity, price, determent, delivery_method, delivery_date,
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier} = this.state;
 
@@ -104,7 +104,6 @@ class Form extends Component {
                         <div className="form-group col-md-6 mb-2">
                             <label>Категория</label>
                             <select className="form-select"
-                            type="text"
                             name="category"
                             onChange={this.onChange}
                             >
@@ -116,6 +115,7 @@ class Form extends Component {
                         <div className="form-group col-md-2 mb-2">
                             <label>Вес, кг</label>
                             <input className="form-control"
+                            data-testid="weight"
                             type="text"
                             name="weight"
                             onChange={this.onChange}
@@ -126,6 +126,7 @@ class Form extends Component {
                             <label>Засор, %</label>
                             <Tooltip title="Слитые АКБ до 2%<br/>Неслитые АКБ до 15%" />
                             <input className="form-control"
+                            data-testid="impurity"
                             type="text"
                             name="impurity"
                             onChange={this.onChange}
@@ -135,6 +136,7 @@ class Form extends Component {
                         <div className="form-group col-md-2 mb-2">
                             <label>Цена, ₽/кг</label>
                             <input className="form-control"
+                            data-testid="price"
                             type="number"
                             name="price"
                             onChange={this.onChange}
@@ -144,6 +146,7 @@ class Form extends Component {
                         <div className="form-group col-md-2 mb-2">
                             <label>Отсрочка, дней</label>
                             <input className="form-control"
+                            data-testid="determent"
                             type="number"
                             min="5"
                             name="determent"
@@ -154,6 +157,7 @@ class Form extends Component {
                         <div className="form-group col-md-2 mb-2">
                             <label>Дата поставки</label>
                             <input className="form-control"
+                            data-testid="date"
                             type="date"
                             min={today}
                             name="delivery_date"
@@ -166,7 +170,6 @@ class Form extends Component {
                         <div className="form-group col-md-4 mb-2">
                         <label>Способ поставки</label>
                         <select className="form-select"
-                        type="text"
                         name="delivery_method"
                         onChange={this.onChange}
                         >
@@ -175,7 +178,7 @@ class Form extends Component {
                         </select>
                     </div>
                     </div>
-                    { delivery_method == 'removal' ?
+                    { delivery_method === 'removal' ?
                     <div className="row">
                         <div className="form-group col-md-6 mb-2">
                             <label>Адрес вывоза</label>
@@ -227,7 +230,7 @@ class Form extends Component {
                         />
                     </div>
 
-                    <button className="btn btn-primary mt-4 me-2" type="submit">Добавить</button>
+                    <button data-testid="add-submit-btn" className="btn btn-primary mt-4 me-2" type="submit">Добавить</button>
                     <button onClick={this.props.handleShowAddForm} className="btn btn-secondary mt-4">Отменить</button>
 
                 </form>

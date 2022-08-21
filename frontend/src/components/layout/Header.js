@@ -28,7 +28,7 @@ class Header extends Component {
 
         const authLinks = (
                        <ul className="navbar-nav ms-md-auto">
-                           <span className="navbar-text me-2">
+                           <span title="userinfo" className="navbar-text me-2">
                                { user ? `👤 ${user.username} (${user.email})` : '' }
                            </span>
                             <li className="nav-item">

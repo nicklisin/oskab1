@@ -43,7 +43,7 @@ export class Offers extends Component {
         }
 
     getOfferFunc = (e, id) => {
-            this.setState((prevState) => {
+            this.setState(() => {
                 return {
                     offer: this.props.getOffer(id)
                 }
@@ -119,7 +119,7 @@ export class Offers extends Component {
                         <tr key={offer.id} className="main-table-row">
                             <td>
                                 {offer.status === 'draft'
-                                ? <button type="button" className="btn btn-primary btn-sm me-1" data-offer-id={offer.id}
+                                ? <button data-testid="edit-btn" type="button" className="btn btn-primary btn-sm me-1" data-offer-id={offer.id}
                                 onClick={ (e) => { this.getOfferFunc(e, offer.id) } } >
                                     <svg id="i-edit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
                                         <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z" />
@@ -140,7 +140,7 @@ export class Offers extends Component {
                             <td>{offer.delivery_method_name}</td>
                             <td><nobr>{offer.delivery_date}</nobr></td>
                             <td>
-                                {offer.status === 'draft' | offer.status === 'todelete' ?
+                                {offer.status === 'draft' || offer.status === 'todelete' ?
                                 <button onClick={this.props.deleteOffer.bind(this, offer.id)} className="btn btn-sm btn-danger">×</button>
                                 :''}
                             </td>

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Link, Navigate} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {forgot} from "../../actions/auth";
@@ -30,14 +30,16 @@ class Forgot extends Component {
             return <Navigate to="/" />
         }
         const {email} = this.state;
+        const emailCheck = /\S+@\S+\.\S+/;
         return (
             <div className="col-md-6 m-auto login-card">
                 <div className="card card-body mt-5">
                     <h2 className="text-center">Забыли пароль?</h2>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
-                            <label>Адрес электронной почты</label>
+                            <label htmlFor="email">Адрес электронной почты</label>
                             <input type="email"
+                                   id="email"
                                    disabled={ this.props.isSending }
                                    className="form-control"
                                    name="email"
@@ -46,7 +48,7 @@ class Forgot extends Component {
                             />
                         </div>
                         <div className="form-group">
-                            <button type="submit" disabled={ this.props.isSending } className="btn btn-primary mt-2 mb-4">
+                            <button name="submit" type="submit" disabled={ !emailCheck.test(email) ? true : this.props.isSending } className="btn btn-primary mt-2 mb-4">
                                 { this.props.isSending ? <span className="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> : '' }
                                 { this.props.isSending ? ' Отправляем' : 'Восстановить' }
                             </button>

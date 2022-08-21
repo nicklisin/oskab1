@@ -99,7 +99,7 @@ export const register = ({username, email, password}) => dispatch => {
 export const logout = ()=> (dispatch, getState) => {
 
     axios.post('/api/auth/logout', null, tokenConfig(getState))
-        .then(res => {
+        .then(() => {
             dispatch({
                 type: LOGOUT_SUCCESS
             });

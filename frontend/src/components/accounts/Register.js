@@ -37,6 +37,13 @@ class Register extends Component {
     onChange = e => this.setState({[e.target.name]: e.target.value})
 
     render() {
+
+        const emailCheck = /\S+@\S+\.\S+/;
+
+        function passCheck(pass1, pass2){
+            return pass1 === pass2 && (pass1.length >= 3)
+        }
+
         if(this.props.isAuthenticated){
             return <Navigate to="/"/>
         }
@@ -47,8 +54,9 @@ class Register extends Component {
                     <h2 className="text-center">Регистрация</h2>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
-                            <label>Логин</label>
+                            <label htmlFor="username">Логин</label>
                             <input type="text"
+                                   id="username"
                                    className="form-control"
                                    name="username"
                                    onChange={this.onChange}
@@ -56,9 +64,10 @@ class Register extends Component {
                             />
                         </div>
                         <div className="form-group">
-                            <label>Email</label>
+                            <label htmlFor="email">Email</label>
                             <input type="email"
-                                   className="form-control"
+                                   id="email"
+                                   className={emailCheck.test(email) ? 'form-control is-valid': 'form-control'}
                                    name="email"
                                    onChange={this.onChange}
                                    value={email}
@@ -66,25 +75,27 @@ class Register extends Component {
                             <div className="bd-callout bd-callout-warning">Указывайте действующий адрес почты, на него будут приходить уведомления.</div>
                         </div>
                         <div className="form-group">
-                            <label>Пароль</label>
+                            <label htmlFor="password">Пароль</label>
                             <input type="password"
-                                   className="form-control"
+                                   id="password"
+                                   className={passCheck(password, password2) ? "form-control is-valid" : "form-control" }
                                    name="password"
                                    onChange={this.onChange}
                                    value={password}
                             />
                         </div>
                         <div className="form-group">
-                            <label>Подтвердите пароль</label>
+                            <label htmlFor="password2">Подтвердите пароль</label>
                             <input type="password"
-                                   className="form-control"
+                                   id="password2"
+                                   className={passCheck(password, password2) ? "form-control is-valid" : "form-control" }
                                    name="password2"
                                    onChange={this.onChange}
                                    value={password2}
                             />
                         </div>
                         <div className="form-group">
-                            <button type="submit" className="btn btn-primary mt-2 mb-4">Зарегистрироваться</button>
+                            <button disabled={!username.length || !emailCheck.test(email) || !password.length || !password2.length || !(password === password2)} type="submit" className="btn btn-primary mt-2 mb-4">Зарегистрироваться</button>
                         </div>
                         <p>Уже есть аккаунт? <Link to="/login">Войти</Link></p>
                     </form>

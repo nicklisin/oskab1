@@ -61,7 +61,7 @@ class OfferUpdateForm extends Component {
         e.preventDefault();
         const { id, category, weight, impurity, price, determent, delivery_method, delivery_date,
             removal_address, delivery_range_from, delivery_range_max,
-            delivery_range_price, supplier, created, owner, status, updated} = this.state;
+            delivery_range_price, supplier, created, owner, status} = this.state;
         const offer = { id, category, weight, impurity, price, determent, delivery_method, delivery_date,
             removal_address, delivery_range_from, delivery_range_max,
             delivery_range_price, supplier, created, owner, status }
@@ -107,7 +107,7 @@ class OfferUpdateForm extends Component {
     render() {
         const {category, weight, impurity, price, determent, delivery_method, delivery_date,
             removal_address, delivery_range_from, delivery_range_max,
-            delivery_range_price, supplier, status} = this.state;
+            delivery_range_price, status} = this.state;
 
         let today = new Date().toISOString().slice(0, 10)
 
@@ -115,9 +115,9 @@ class OfferUpdateForm extends Component {
             <p className="mb-0">Отправляя предложение, вы подтверждаете, что ознакомлены и согласны с <a target="_blank" href="#/help/legal">условиями</a>&nbsp;
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      className="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
+                    <path fillRule="evenodd"
                           d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                    <path fill-rule="evenodd"
+                    <path fillRule="evenodd"
                           d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
                 </svg>
                 .</p>
@@ -141,7 +141,6 @@ class OfferUpdateForm extends Component {
                         <div className="form-group col-md-6 mb-2">
                             <label>Категория</label>
                             <select className="form-select"
-                            type="text"
                             name="category"
                             onChange={this.onChange}
                             value={category}
@@ -201,10 +200,9 @@ class OfferUpdateForm extends Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="form-group col-md-2 mb-2">
+                        <div className="form-group col-md-4 mb-2">
                             <label>Способ поставки</label>
                             <select className="form-select"
-                            type="text"
                             name="delivery_method"
                             value={delivery_method}
                             onChange={this.onChange}
@@ -215,7 +213,7 @@ class OfferUpdateForm extends Component {
                         </div>
                     </div>
 
-                    { delivery_method == 'removal' ?
+                    { delivery_method === 'removal' ?
                     <div className="row">
                         <div className="form-group col-md-6 mb-2">
                             <label>Адрес вывоза</label>
@@ -262,7 +260,7 @@ class OfferUpdateForm extends Component {
                         <div className="form-group col-md-2 mb-2">
                             <label>Статус</label>
                             <select className="form-select"
-                            type="text"
+                                    data-testid="status-selector"
                             name="status"
                             value={status}
                             onChange={this.onChange}
@@ -273,7 +271,7 @@ class OfferUpdateForm extends Component {
                         </div>
                     </div>
                     {status === 'sended' ? agreement : ''}
-                    <button className="btn btn-primary mt-4 me-2" type="submit" data-dismiss="modal">{status === 'sended' ? 'Отправить на проверку' : 'Сохранить'}</button>
+                    <button className="btn btn-primary mt-4 me-2" data-testid="send-offer-btn" type="submit" data-dismiss="modal">{status === 'sended' ? 'Отправить на проверку' : 'Сохранить'}</button>
                     <button onClick={this.props.handleShowUpdateForm} className="btn btn-secondary mt-4" type="button" data-dismiss="modal">Отменить</button>
                 </form>
             </div>

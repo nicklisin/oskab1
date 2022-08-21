@@ -1,9 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import ReactDOM from 'react-dom';
-import {HashRouter as Router, Route, Routes, Redirect, Switch}  from 'react-router-dom'
+import {HashRouter as Router, Route, Routes}  from 'react-router-dom'
 import {Provider} from "react-redux";
 import store from "../store";
-import {Provider as AlertProvider} from 'react-alert';
+import {Provider as AlertProvider} from '@blaumaus/react-alert';
 import AlertTemplate from "react-alert-template-basic";
 
 import Header from "./layout/Header";
@@ -18,14 +17,12 @@ import PrivateRoute from "./common/PrivateRoute";
 import {loadUser} from "../actions/auth";
 import Forgot from "./accounts/Forgot";
 import Reset from "./accounts/Reset";
+import ErrorBoundary from "./common/ErrorBoundary";
 
-
-//Alert options
 const alertOptions = {
     timeout: 3000,
     position: "top right"
 }
-
 
 class App extends Component {
 
@@ -38,24 +35,26 @@ class App extends Component {
             <Provider store={store}>
                 <AlertProvider template={AlertTemplate} {...alertOptions}>
                     <Router>
-                        <Fragment>
-                            <Header />
-                            <Alerts />
-                            <div className="container mt-4">
-                                <Routes>
-                                    <Route path="/" element={<PrivateRoute/>}>
-                                        <Route path="/" element={<SuppliersDashboard/>} />
-                                        <Route path="/offers" element={<OffersDashboard/>} />
-                                    </Route>
-                                    <Route path="/register" element={<Register/>} />
-                                    <Route path="/login" element={<Login/>} />
-                                    <Route path="/forgot" element={<Forgot/>} />
-                                    <Route path="/reset" element={<Reset/>} />
-                                    <Route path="/help" element={<Help/>} />
-                                    <Route path="/help/legal" element={<Legal/>} />
-                                </Routes>
-                            </div>
-                        </Fragment>
+                        <ErrorBoundary>
+                            <Fragment>
+                                <Header />
+                                <Alerts />
+                                <div className="container mt-4">
+                                    <Routes>
+                                        <Route path="/" element={<PrivateRoute/>}>
+                                            <Route path="/" element={<SuppliersDashboard/>} />
+                                            <Route path="/offers" element={<OffersDashboard/>} />
+                                        </Route>
+                                        <Route path="/register" element={<Register/>} />
+                                        <Route path="/login" element={<Login/>} />
+                                        <Route path="/forgot" element={<Forgot/>} />
+                                        <Route path="/reset" element={<Reset/>} />
+                                        <Route path="/help" element={<Help/>} />
+                                        <Route path="/help/legal" element={<Legal/>} />
+                                    </Routes>
+                                </div>
+                            </Fragment>
+                        </ErrorBoundary>
                     </Router>
                 </AlertProvider>
             </Provider>
@@ -63,4 +62,4 @@ class App extends Component {
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+export default App;

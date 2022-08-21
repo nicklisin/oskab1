@@ -65,7 +65,7 @@ export const updateOffer = (id, offer) => (dispatch, getState) => {
 // DELETE OFFER
 export const deleteOffer = (id)=> (dispatch, getState) => {
     axios.delete(`/api/offers/${id}/`, tokenConfig(getState))
-        .then(res => {
+        .then(() => {
             dispatch(createMessage({deleteOffer: 'Предложение удалено'}))
             dispatch({
                 type: DELETE_OFFER,

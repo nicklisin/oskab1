@@ -29,7 +29,7 @@ export const addSupplier = supplier => (dispatch, getState) => {
 // DELETE SUPPLIER
 export const deleteSupplier = (id)=> (dispatch, getState) => {
     axios.delete(`/api/suppliers/${id}/`, tokenConfig(getState))
-        .then(res => {
+        .then(() => {
             dispatch(createMessage({deleteSupplier: 'Компания удалена'}))
             dispatch({
                 type: DELETE_SUPPLIER,
