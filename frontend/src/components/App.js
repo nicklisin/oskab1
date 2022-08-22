@@ -1,5 +1,5 @@
-import React, {Component, Fragment} from 'react';
-import {HashRouter as Router, Route, Routes}  from 'react-router-dom'
+import React, {Component, Fragment, useEffect} from 'react';
+import {BrowserRouter as Router, Route, Routes}  from 'react-router-dom'
 import {Provider} from "react-redux";
 import store from "../store";
 import {Provider as AlertProvider} from '@blaumaus/react-alert';
@@ -18,6 +18,7 @@ import {loadUser} from "../actions/auth";
 import Forgot from "./accounts/Forgot";
 import Reset from "./accounts/Reset";
 import ErrorBoundary from "./common/ErrorBoundary";
+import ReactGA from 'react-ga';
 
 const alertOptions = {
     timeout: 3000,
@@ -28,9 +29,11 @@ class App extends Component {
 
     componentDidMount() {
         store.dispatch(loadUser())
+        ReactGA.initialize('UA-000000-01')
     }
 
     render() {
+
         return (
             <Provider store={store}>
                 <AlertProvider template={AlertTemplate} {...alertOptions}>
