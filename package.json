@@ -45,6 +45,7 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
-    "@blaumaus/react-alert": "^7.0.5"
+    "@blaumaus/react-alert": "^7.0.5",
+    "react-ga": "^3.3.1"
   }
 }
