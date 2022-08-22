@@ -5,7 +5,7 @@ class Help extends Component {
     render() {
 
     return (
-        <div className="mb-5">
+        <div className="mb-5 pb-5">
         <h1>Справка</h1>
 
         <h2>Начало работы</h2>

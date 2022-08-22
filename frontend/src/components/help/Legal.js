@@ -5,7 +5,7 @@ class Legal extends Component {
     render() {
 
     return (
-        <div className="mb-4">
+        <div className="mb-5 pb-5">
             <h1>Условия оказания услуг Пользователям Сайта oskab.ru</h1>
             <p>Дата публикации: 7 мая 2022 г.</p>
             <p>Дата вступления в силу: 7 мая 2022 г.</p>
