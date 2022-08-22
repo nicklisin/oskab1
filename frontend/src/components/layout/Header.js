@@ -56,7 +56,7 @@ class Header extends Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container">
-                    <a className="navbar-brand" href="#">♼ <strong>ОСКАБ</strong></a>
+                    <a className="navbar-brand" href="/">♼ <strong>ОСКАБ</strong></a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false"
                             aria-label="Toggle navigation">
