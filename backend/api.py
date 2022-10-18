@@ -23,6 +23,10 @@ class SupplierViewSet(viewsets.ModelViewSet):
     serializer_class = SupplierSerializer
 
     def get_queryset(self):
+        if self.request.user.groups.filter(name='oskabstaff').exists():
+            return self.queryset
+        if self.request.user.groups.filter(name='moderators').exists():
+            return self.queryset
         return self.request.user.suppliers.all()
 
     def perform_create(self, serializer):
@@ -42,14 +46,18 @@ class OfferViewSet(viewsets.ModelViewSet):
     serializer_class = OfferSerializer
 
     def get_queryset(self):
+        groups = self.request.user.groups
         try:
             supplier = self.request.query_params['supplier']
             if supplier:
-                return Offer.objects.filter(owner=self.request.user, supplier=self.request.query_params['supplier'])
+                return Offer.objects.filter(supplier=self.request.query_params['supplier'])
+            # else:
+            #     return Offer.objects.filter(owner=self.request.user)
+        except:
+            if groups.filter(name='oskabstaff').exists() or groups.filter(name='moderators').exists():
+                return Offer.objects.all()
             else:
                 return Offer.objects.filter(owner=self.request.user)
-        except:
-            return Offer.objects.filter(owner=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

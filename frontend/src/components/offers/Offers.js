@@ -128,7 +128,7 @@ export class Offers extends Component {
                                 : '' }
                                 <span className={this.getStatusColor(offer.status)}>{offer.status_name}</span>
                             </td>
-                            {/*<td>{offer.supplier_name}</td>*/}
+                            <td>{offer.supplier_name}</td>
                             <td><nobr>{offer.updated.slice(8,10)}/{offer.updated.slice(5,7)}/{offer.updated.slice(0,4)}</nobr> <nobr>{offer.updated.slice(11,16)}</nobr></td>
                             <td>{offer.category_name}</td>
                             <td>{offer.weight}</td>

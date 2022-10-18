@@ -29,7 +29,7 @@ class App extends Component {
 
     componentDidMount() {
         store.dispatch(loadUser())
-        ReactGA.initialize('UA-000000-01')
+        ReactGA.initialize('G-8W8Q5D8S21')
     }
 
     render() {

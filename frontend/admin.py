@@ -45,7 +45,7 @@ class OfferAdmin(ModelAdminTotals):
     offer_sum.short_description = 'Сумма'
 
     list_display = (
-        'weight', 'offer_sum', 'supplier', 'supplier_status', 'price', 'determent', 'delivery_date', 'created', 'status', 'owner_email')
+        'created', 'status', 'weight', 'price', 'supplier', 'supplier_status', 'offer_sum', 'delivery_date', 'determent', 'owner_email')
     search_fields = ['supplier__name', 'supplier__inn']
     list_filter = (('created', DateRangeFilter), ('delivery_date', DateRangeFilter), 'status', 'category')
     list_totals = [('weight', Sum), ('price', lambda price: Round(Avg(price), 2))]
