@@ -22,7 +22,7 @@ class Reset extends Component {
 
     onSubmit = e => {
         e.preventDefault()
-        const windowUrl = window.location.hash;
+        const windowUrl = window.location.href;
         const token = windowUrl.split('?token=')[1]
         this.props.reset(this.state.password, token)
         this.setState({

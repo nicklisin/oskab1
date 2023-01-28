@@ -20,9 +20,12 @@ describe('offer creation', ()=>{
         cy.findByTestId('impurity').type('5')
         cy.findByTestId('price').type(price)
         const today = new Date()
+        console.log("today", today)
         const tomorrow = new Date(today)
         tomorrow.setDate(tomorrow.getDate() + 1)
+        console.log("tomorrow", tomorrow)
         const month = tomorrow.getMonth() + 1
+        console.log("month", month)
         cy.findByTestId('date').type(`${tomorrow.getFullYear()}-${("0" + month)}-${("0" + tomorrow.getDate()).slice(-2)}`)
         cy.intercept('POST', '/api/offers/').as('postOffer')
         cy.intercept('GET', '/api/offers/').as('getOffers')
