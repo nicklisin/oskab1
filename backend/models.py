@@ -47,6 +47,7 @@ class Offer(models.Model):
         ('sended', 'Отправлено'),
         ('onreview', 'На рассмотрении'),
         ('prerejected', 'Предварительно отклонено'),
+        ('cancelled', 'Отозвано поставщиком'),
         ('accepted', 'Принято'),
         ('rejected', 'Отклонено'),
         ('todelete', 'На удаление'),

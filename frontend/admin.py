@@ -24,9 +24,9 @@ class OfferAdmin(ModelAdminTotals):
     def get_queryset(self, request):
         qs = super(OfferAdmin, self).get_queryset(request)
         if has_group(request.user, "oskabstaff"):
-            return qs.filter(status__in=['sended', 'onreview', 'prerejected', 'accepted', 'rejected', 'done'])
+            return qs.filter(status__in=['sended', 'onreview', 'prerejected', 'cancelled', 'accepted', 'rejected', 'done'])
         if has_group(request.user, "moderators"):
-            return qs.filter(status__in=['onreview', 'prerejected', 'accepted', 'rejected', 'done'])
+            return qs.filter(status__in=['onreview', 'prerejected', 'cancelled', 'accepted', 'rejected', 'done'])
         return qs
 
     def owner_email(self, obj):
@@ -65,12 +65,14 @@ class OfferAdmin(ModelAdminTotals):
                 ('draft', 'Черновик'),
                 ('sended', 'Отправлено'),
                 ('onreview', 'На рассмотрении'),
+                ('cancelled', 'Отозвано поставщиком'),
                 ('prerejected', 'Предварительно отклонено'),
                 ('done', 'Реализовано')
             )
             if has_group(request.user, "moderators"):
                 kwargs['choices'] = (
                     ('onreview', 'На рассмотрении'),
+                    ('cancelled', 'Отозвано поставщиком'),
                     ('prerejected', 'Предварительно отклонено'),
                     ('accepted', 'Принято'),
                     ('rejected', 'Отклонено'),
